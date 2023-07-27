@@ -141,6 +141,52 @@ myApp.post('/', [
         softdrinkCharge = 3.5 * softdrink;
         subTotal = breadCharge + milkCharge + softdrinkCharge;
 
+        //set conditions for different charges province wise
+        switch (province) {
+            case 'ONTARIO (ON)':
+                tax = 13;
+                taxAmount = ((subTotal * 13) / 100);
+                totalAmount = ((subTotal * 13) / 100) + subTotal;
+                break;
+
+            case 'ALBERTA (AB)':
+            case 'NORTHWEST TERRITORIES (NT)' :
+            case 'NUNAVUT (NV)' :    
+            case 'YUKON (YK)' :
+                tax = 5;
+                taxAmount = ((subTotal * 5) / 100);
+                totalAmount = ((subTotal * 5) / 100) + subTotal;
+                break;
+
+            case 'BRITISH COLUMBIA (BC)':
+            case 'MANITOBA (MB)':    
+                tax = 12;
+                taxAmount = ((subTotal * 12) / 100);
+                totalAmount = ((subTotal * 12) / 100) + subTotal;
+                break;
+
+            case 'NEW BRUNSWICK (NB)':
+            case 'NEWFOUNDLAND AND LABRADOR (NL)':
+            case 'NOVA SCOTIA (NS)':
+            case 'PRINCE EDWARD ISLAND (PE)':
+                tax = 15;
+                taxAmount = ((subTotal * 15) / 100);
+                totalAmount = ((subTotal * 15) / 100) + subTotal;
+                break;
+
+            case 'QUEBEC (QC)':
+                tax = 14.975;
+                taxAmount = ((subTotal * 14.975) / 100);
+                totalAmount = ((subTotal * 14.975) / 100) + subTotal;
+                break;
+
+            case 'SASKATCHEWAN (SK)':
+                tax = 11;
+                taxAmount = ((subTotal * 11) / 100);
+                totalAmount = ((subTotal * 11) / 100) + subTotal;
+                break;
+        }
+
         var pageData = {
             name: name,
             email: email,
